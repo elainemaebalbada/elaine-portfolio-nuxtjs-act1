@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg: #FCFCF5;
+  --surface: #F2E8E4;
+  --text: #4A0808;
+  --muted: #77534B;
+  --accent: #D9B9B8;
+  --primary: #4A0808;
+  --primary-dark: #350606;
+  --border: #E8D8D3;
+
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --background: var(--bg);
+  --warm: var(--surface);
+  --deep: var(--primary-dark);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+
+h1,
+h2,
+h3,
+.display-font {
+  font-family: var(--font-display);
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+nav,
+button {
+  font-family: var(--font-body);
+  font-weight: 600;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--primary-dark);
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.3s ease;
+}
+
+/* Page transitions */
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* Scroll reveal */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.65, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Automatic button and CTA hover movement */
+
+button:not([aria-label^="Go to photo"]),
+a[class*="bg-"] {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+button:not([aria-label^="Go to photo"]):hover,
+a[class*="bg-"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(74, 8, 8, 0.15);
+}
+
+button:not([aria-label^="Go to photo"]):active,
+a[class*="bg-"]:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Image hover */
+
+.image-hover {
+  overflow: hidden;
+}
+
+.image-hover img {
+  transition: transform 0.6s ease;
+}
+
+.image-hover:hover img {
+  transform: scale(1.04);
+}
+
+/* Focus */
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
